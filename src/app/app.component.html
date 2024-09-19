@@ -137,20 +137,32 @@
       width: 800px;
       height: 800px;
     }
-    #img-1 {
-      position: absolute;
-      transform: translateY(100px);
-    }
-    #img-2 {
-      position: absolute;
-      transform: translateY(-100px);
-    }
-    #jumbo {
-      width: 100%;
-      height: auto;
-    }
   }
-  
+
+#jumbo {
+  width: 100%;
+  height: auto;
+}
+
+.img-1-lg {
+  transform: translate(150px, -20px);
+}
+
+.img-2-lg {
+  transform: translate(-100px, 100px);
+}
+
+.img-1-xl {
+  transform: translate(-50px, 0px);
+}
+
+.img-2-xl {
+  transform: translate(50px, 0px);
+}
+
+.content-text {
+  padding: 50px;
+}
 
 
 </style>
@@ -164,7 +176,7 @@
 <mat-grid-list cols="1" [rowHeight]="jumbotronRowHeight">
   <mat-grid-tile>
     <div class="image-box">
-      <img id="jumbo" ngSrc="assets/images/natalia-und-wladimir.jpg" alt="image" height="1200" width="1599">
+      <img id="jumbo" ngSrc="assets/images/natalia-und-wladimir.jpg" priority alt="image" height="1200" width="1599">
     </div>
   </mat-grid-tile>
 </mat-grid-list>
@@ -179,15 +191,24 @@
     Über uns
   </h2>
 </section>
-<mat-grid-list [cols]="contentCols" rowHeight="600px">
+<mat-grid-list [cols]="contentCols" [rowHeight]="contentRowHeight">
   <mat-grid-tile>
-    <div style="text-align: center">
-      <img id="img-1" ngSrc="assets/images/natalia-und-wladimir.jpg" alt="image" height="300" width="400">
-      <img id="img-2" ngSrc="assets/images/natalia-und-wladimir.jpg" alt="image" height="300" width="400">
-    </div>
+      <img id="img-1" [ngClass]="{
+      'img-1-xs': currentScreenSize === 'XSmall',
+       'img-1-sm' : currentScreenSize === 'Small',
+        'img-1-md' : currentScreenSize === 'Medium',
+         'img-1-lg' : currentScreenSize === 'Large',
+          'img-1-xl' : currentScreenSize === 'XLarge'
+           }" ngSrc="assets/images/wladimir.png" alt="image" priority height="400" width="532">
+      <img id="img-2" [ngClass]="{
+      'img-2-xs': currentScreenSize === 'XSmall',
+       'img-2-sm' : currentScreenSize === 'Small',
+        'img-2-md' : currentScreenSize === 'Medium',
+         'img-2-lg' : currentScreenSize === 'Large',
+          'img-2-xl' : currentScreenSize === 'XLarge' }" ngSrc="assets/images/natalia-und-wladimir.jpg" priority  alt="image" height="300" width="400">
   </mat-grid-tile>
   <mat-grid-tile>
-    <p><br>
+    <p class="content-text"><br>
       Information über uns: Wir sind seit 3 Jahren eine Ehepaar und sind beide 29 Jahre alt.<br>
 
       Der Mann (Wladimir) ist Deutsch, wohnt in Hamburg seit 2014. Studium: HAW Hamburg, M.Sc.  Digital Reality (Student). Angehend als freiberuflicher Software Entwickler.<br><br>

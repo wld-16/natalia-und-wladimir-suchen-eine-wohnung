@@ -1,6 +1,6 @@
 import {Component, HostListener, inject, OnDestroy} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {NgOptimizedImage} from "@angular/common";
+import {NgClass, NgOptimizedImage} from "@angular/common";
 import {MatGridList, MatGridTile} from "@angular/material/grid-list";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {MatIcon} from "@angular/material/icon";
@@ -11,7 +11,7 @@ import {Subject, takeUntil} from "rxjs";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgOptimizedImage, MatGridList, MatGridTile, MatCheckbox, MatIcon, MatDivider],
+  imports: [RouterOutlet, NgOptimizedImage, MatGridList, MatGridTile, MatCheckbox, MatIcon, MatDivider, NgClass],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -30,6 +30,7 @@ export class AppComponent implements OnDestroy {
 
   public innerWidth: any;
   public jumbotronRowHeight: number = 600;
+  public contentRowHeight: number = 300;
   public contentCols: number = 2;
 
   ngOnDestroy() {
@@ -55,17 +56,20 @@ export class AppComponent implements OnDestroy {
 
             if(this.displayNameMap.get(query) == "XSmall") {
               this.jumbotronRowHeight = 100
+              this.contentRowHeight = 800
               this.contentCols = 1
             } else if (this.displayNameMap.get(query) == "Small") {
               this.jumbotronRowHeight = 300
+              this.contentRowHeight = 600
               this.contentCols = 1
             } else if (this.displayNameMap.get(query) == "Medium") {
-
+              this.contentRowHeight = 600
             } else if (this.displayNameMap.get(query) == "Large") {
               this.jumbotronRowHeight = 600
+              this.contentRowHeight = 500
               this.contentCols = 2
             } else if (this.displayNameMap.get(query) == "XLarge") {
-
+              this.contentCols = 2
             } else {
 
             }
